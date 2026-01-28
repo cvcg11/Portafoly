@@ -110,7 +110,7 @@ export const projects = [
   {
     name: "Leal Import",
     description: "Sistema operativo para importación y venta de vehículos con taller: inventario, costos, ventas, órdenes de trabajo y evidencias de pagos/costos con reglas fuertes de consistencia.",
-    stack: ["Spring Boot", "Java", "Oracle", "HTML", "CSS", "JS"],
+    stack: ["Spring Boot", "Java", "postgresql", "HTML", "CSS", "JS"],
     link: "En producción..."
   }
 ];
