@@ -1,0 +1,606 @@
+:root {
+  --bg: #1e1e1e;
+  --panel: #252526;
+  --panel2: #2a2a2a;
+  --border: #303031;
+  --text: #d4d4d4;
+  --muted: #a7a7a7;
+  --subtle: #808080;
+  --accent: #007acc;
+  --accent2: #3794ff;
+
+  --activityBar: #333333;
+  --sideBar: #252526;
+  --editor: #1e1e1e;
+  --tab: #2d2d2d;
+  --tabActive: #1f1f1f;
+  --statusBar: #007acc;
+
+  --fontMono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --fontUi: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --radius: 10px;
+  --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0f0f10;
+  color: var(--text);
+  font-family: var(--fontUi);
+}
+
+* {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+.appShell {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 44px 1fr 26px;
+  background: var(--bg);
+}
+
+/* Top Bar */
+.topBar {
+  display: grid;
+  grid-template-columns: 160px 1fr 160px;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--border);
+  background: #2a2a2a;
+}
+
+.topBarLeft {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.topBarDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  opacity: .95;
+}
+
+.topBarDotRed {
+  background: #ff5f57;
+}
+
+.topBarDotYellow {
+  background: #febc2e;
+}
+
+.topBarDotGreen {
+  background: #28c840;
+}
+
+.topBarCenter {
+  text-align: center;
+  font-family: var(--fontMono);
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.topBarRight {
+  text-align: right;
+  font-size: 12px;
+  color: var(--subtle);
+}
+
+/* Main Grid */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 52px 280px 1fr;
+  min-height: 0;
+}
+
+/* Activity Bar */
+.activityBar {
+  background: var(--activityBar);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+  gap: 6px;
+  align-items: center;
+}
+
+.activitySpacer {
+  flex: 1;
+}
+
+.iconBtn {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.iconBtn:hover {
+  background: rgba(255, 255, 255, .06);
+  color: var(--text);
+}
+
+.iconBtn.isActive {
+  color: var(--text);
+  position: relative;
+}
+
+.iconBtn.isActive::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--accent2);
+  border-radius: 2px;
+}
+
+.icon {
+  font-family: var(--fontMono);
+  font-size: 16px;
+}
+
+/* Sidebar */
+.sideBar {
+  background: var(--sideBar);
+  border-right: 1px solid var(--border);
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sideBarHeader {
+  height: 34px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--subtle);
+}
+
+.tree {
+  padding: 8px 6px;
+  overflow: auto;
+}
+
+.treeFolder {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 6px 8px;
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: .02em;
+}
+
+.treeFolder:hover {
+  background: rgba(255, 255, 255, .05);
+}
+
+.folderName {
+  font-family: var(--fontMono);
+  color: var(--text);
+}
+
+.treeFiles {
+  padding: 6px 0 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fileRow {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 6px;
+  align-items: center;
+  padding: 6px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--muted);
+  font-family: var(--fontMono);
+  font-size: 12.5px;
+}
+
+.fileRow:hover {
+  background: rgba(255, 255, 255, .05);
+  color: var(--text);
+}
+
+.fileRow.isActive {
+  background: rgba(0, 122, 204, .20);
+  color: var(--text);
+}
+
+.fileIcon {
+  opacity: .9;
+  font-size: 12px;
+}
+
+.fileName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Editor */
+.editorShell {
+  background: var(--editor);
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 38px 1fr;
+}
+
+.tabsBar {
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 10px;
+  border-right: 1px solid var(--border);
+  background: var(--tab);
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+  min-width: 160px;
+}
+
+.tab:hover {
+  color: var(--text);
+}
+
+.tab.isActive {
+  background: var(--tabActive);
+  color: var(--text);
+}
+
+.tabLabel {
+  font-family: var(--fontMono);
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tabClose {
+  margin-left: auto;
+  border: 0;
+  background: transparent;
+  color: var(--subtle);
+  cursor: pointer;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+}
+
+.tabClose:hover {
+  background: rgba(255, 255, 255, .08);
+  color: var(--text);
+}
+
+.editorArea {
+  min-height: 0;
+  position: relative;
+}
+
+.editorEmpty {
+  height: 100%;
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, .18);
+  font-family: var(--fontMono);
+  text-align: center;
+}
+
+.emptyTitle {
+  font-size: 14px;
+}
+
+.emptySub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, .12);
+}
+
+.editorPane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.editorPane.isHidden {
+  display: none;
+}
+
+.editorHeader {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  color: var(--subtle);
+  font-family: var(--fontMono);
+  font-size: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, .04);
+}
+
+.codeWrap {
+  min-height: 0;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  overflow: hidden;
+}
+
+.lineNums {
+  margin: 0;
+  padding: 14px 10px;
+  background: #1b1b1b;
+  border-right: 1px solid var(--border);
+  color: rgba(255, 255, 255, .25);
+  font-family: var(--fontMono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  text-align: right;
+  user-select: none;
+  overflow: hidden;
+}
+
+.codeView {
+  margin: 0;
+  padding: 14px 16px;
+  font-family: var(--fontMono);
+  font-size: 12.8px;
+  line-height: 1.7;
+  color: var(--text);
+  overflow: auto;
+  white-space: pre;
+}
+
+/* Simple “syntax highlight” tokens */
+.tokKeyword {
+  color: #c586c0;
+}
+
+.tokString {
+  color: #ce9178;
+}
+
+.tokComment {
+  color: #6a9955;
+}
+
+.tokType {
+  color: #4ec9b0;
+}
+
+.tokNumber {
+  color: #b5cea8;
+}
+
+.tokAccent {
+  color: #9cdcfe;
+}
+
+/* Status Bar */
+.statusBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 0 10px;
+  background: var(--statusBar);
+  color: #fff;
+  font-family: var(--fontMono);
+  font-size: 12px;
+}
+
+.statusLeft,
+.statusCenter,
+.statusRight {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.statusCenter {
+  justify-content: center;
+}
+
+.statusRight {
+  justify-content: flex-end;
+}
+
+.statusItem {
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, .12);
+}
+
+
+/* SVG icons */
+.svgIcon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: -3px;
+}
+
+.svgIconSmall {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+}
+
+.fileIcon,
+.tabIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .95;
+}
+
+/* Links clicables en el editor */
+.codeLink {
+  color: #4fc1ff;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(79, 193, 255, .35);
+}
+
+.codeLink:hover {
+  text-decoration: underline;
+  border-bottom-color: transparent;
+}
+
+.iconSvg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activityBar .svgIcon {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
+/* =========================
+   Responsive Layout (real)
+========================= */
+
+/* 1) Evita scroll del body (solo scroll interno) */
+html, body{
+  overflow: hidden;
+}
+
+/* 2) Sidebar toggle support */
+.sideBar{
+  transition: transform .18s ease, width .18s ease;
+}
+
+/* Estado "sidebar cerrada" */
+.appShell.isSideBarCollapsed .sideBar{
+  transform: translateX(-100%);
+  width: 0;
+  border-right: 0;
+}
+
+/* Cuando sidebar colapsa, el grid cambia */
+.appShell.isSideBarCollapsed .mainGrid{
+  grid-template-columns: 52px 1fr;
+}
+
+/* 3) Desktop default (ya lo tienes, solo dejo claro) */
+.mainGrid{
+  grid-template-columns: 52px 280px 1fr;
+}
+
+/* 4) Tablet: sidebar más angosta */
+@media (max-width: 1024px){
+  .mainGrid{
+    grid-template-columns: 52px 240px 1fr;
+  }
+  .tab{ min-width: 140px; }
+  .codeWrap{ grid-template-columns: 52px 1fr; }
+  .lineNums{ padding: 12px 8px; }
+  .codeView{ padding: 12px 14px; font-size: 12.4px; }
+}
+
+/* 5) Móvil: por defecto sidebar colapsada */
+@media (max-width: 760px){
+  .mainGrid{
+    grid-template-columns: 52px 1fr; /* sin sidebar visible */
+  }
+
+  /* Sidebar como drawer (overlay) */
+  .sideBar{
+    position: absolute;
+    top: 44px;  /* después del topBar */
+    bottom: 26px; /* antes del statusBar */
+    width: min(84vw, 320px);
+    z-index: 50;
+    box-shadow: 0 10px 30px rgba(0,0,0,.45);
+    transform: translateX(-110%); /* escondida */
+  }
+
+  /* Cuando está abierta en móvil */
+  .appShell.isSideBarOpen .sideBar{
+    transform: translateX(0);
+  }
+
+  /* Overlay cuando sidebar está abierta */
+  .appShell.isSideBarOpen::after{
+    content: "";
+    position: absolute;
+    inset: 44px 0 26px 52px; /* no tapa activity bar */
+    background: rgba(0,0,0,.35);
+    z-index: 40;
+  }
+
+  /* Ajustes editor */
+  .tab{ min-width: 130px; }
+  .codeWrap{ grid-template-columns: 46px 1fr; }
+  .lineNums{ font-size: 12px; }
+  .codeView{ font-size: 12.2px; padding: 12px 12px; }
+
+  /* Texto superior más compacto */
+  .topBar{
+    grid-template-columns: 130px 1fr 120px;
+  }
+  .topBarRight{ display: none; } /* opcional: reduce ruido en móvil */
+}
+
+/* 6) Extra pequeño */
+@media (max-width: 420px){
+  .topBarCenter{ font-size: 11.5px; }
+  .tab{ min-width: 120px; }
+  .codeView{ font-size: 12px; }
+}
+
+/* =========================
+   Ocultar scrollbars (mantiene scroll)
+========================= */
+.tree,
+.tabsBar,
+.codeView{
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+.tree::-webkit-scrollbar,
+.tabsBar::-webkit-scrollbar,
+.codeView::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+}

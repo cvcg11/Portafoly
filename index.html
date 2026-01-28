@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Christian Gómez</title>
+    <link rel="stylesheet" href="css/globals.css" />
+</head>
+
+<body>
+
+    <div class="appShell">
+
+        <!-- Top bar -->
+        <header class="topBar">
+            <div class="topBarLeft">
+                <span class="topBarDot topBarDotRed"></span>
+                <span class="topBarDot topBarDotYellow"></span>
+                <span class="topBarDot topBarDotGreen"></span>
+            </div>
+
+            <div class="topBarCenter">
+                <span class="topBarTitle">Portfolio Christian Gómez</span>
+            </div>
+
+            <div class="topBarRight">
+                <span class="topBarHint">VSCode-style UI</span>
+            </div>
+        </header>
+
+        <!-- Main -->
+        <main class="mainGrid">
+
+            <!-- Activity bar -->
+            <aside class="activityBar" aria-label="Activity Bar">
+                <button class="iconBtn isActive" title="Explorer" data-action="explorer">
+                    <span class="iconSvg" id="abExplorer" aria-hidden="true"></span>
+                </button>
+
+                <button class="iconBtn" title="Search" data-action="search">
+                    <span class="iconSvg" id="abSearch" aria-hidden="true"></span>
+                </button>
+
+                <button class="iconBtn" title="Source Control" data-action="git">
+                    <span class="iconSvg" id="abGit" aria-hidden="true"></span>
+                </button>
+
+                <button class="iconBtn" title="Run" data-action="run">
+                    <span class="iconSvg" id="abRun" aria-hidden="true"></span>
+                </button>
+
+                <div class="activitySpacer"></div>
+
+                <button class="iconBtn" title="Settings" data-action="settings">
+                    <span class="iconSvg" id="abGear" aria-hidden="true"></span>
+                </button>
+            </aside>
+
+
+            <!-- Sidebar / Explorer -->
+            <section class="sideBar" aria-label="Explorer">
+                <div class="sideBarHeader">
+                    <span class="sideBarTitle">EXPLORADOR</span>
+                </div>
+
+                <div class="tree">
+                    <button class="treeFolder" type="button" data-action="toggleFolder">
+                        <span class="chev">▾</span>
+                        <span class="folderName">PORTFOLIO</span>
+                    </button>
+
+                    <div class="treeFiles" id="fileList" role="list"></div>
+                </div>
+            </section>
+
+            <!-- Editor -->
+            <section class="editorShell" aria-label="Editor">
+                <div class="tabsBar" id="tabsBar" role="tablist"></div>
+
+                <div class="editorArea">
+                    <div class="editorEmpty" id="editorEmpty">
+                        <div class="emptyTitle">Abrí un archivo desde el explorador</div>
+                        <div class="emptySub">Tip: probá con README.md</div>
+                    </div>
+
+                    <div class="editorPane isHidden" id="editorPane">
+                        <div class="editorHeader">
+                            <span class="editorBreadcrumb" id="breadcrumb">PORTFOLIO</span>
+                        </div>
+
+                        <div class="codeWrap">
+                            <pre class="lineNums" id="lineNums" aria-hidden="true"></pre>
+                            <pre class="codeView" id="codeView"></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Status bar -->
+        <footer class="statusBar">
+            <div class="statusLeft">
+                <span class="statusItem">main</span>
+                <span class="statusItem">✓</span>
+            </div>
+            <div class="statusCenter">
+                <span class="statusItem" id="statusFile">Sin archivo</span>
+            </div>
+            <div class="statusRight">
+                <span class="statusItem" id="statusLang">—</span>
+                <span class="statusItem" id="statusPos">Ln 1, Col 1</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
